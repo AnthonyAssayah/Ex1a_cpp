@@ -1,11 +1,9 @@
 #include <iostream>
-#include <string>
-
+#include <string.h>
+#include "mat.hpp"
 using namespace std;
 
-namespace ariel{
-    string mat(int rows, int cols, char c1, char c2){
 
+string ariel::mat(int rows, int cols, char c1, char c2){
         return "";
-    }
 }
