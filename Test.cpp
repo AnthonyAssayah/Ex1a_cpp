@@ -6,10 +6,7 @@ using namespace ariel;
 #include <algorithm>
 using namespace std;
 
-/**
- * Returns the input string without the whitespace characters: space, newline and tab.
- * Requires std=c++2a.
- */
+
 string nospaces(string input) {
 	std::erase(input, ' ');
 	std::erase(input, '\t');
@@ -17,6 +14,90 @@ string nospaces(string input) {
 	std::erase(input, '\r');
 	return input;
 }
+
+
+
+// only one character
+TEST_CASE("Good input") {
+    CHECK(nospaces(mat(1, 1, '=', ':')) == nospaces("=\n"));
+}
+
+
+// matrix 3 x 3
+TEST_CASE("Good input") {
+    CHECK(nospaces(mat(3, 3, '$', '+')) == nospaces("$$$\n"
+													"$+$\n"
+													"$$$\n"));
+}
+
+TEST_CASE("Good input") {
+    CHECK(nospaces(mat(3, 15, '~', '=')) == nospaces("~~~~~~~~~~~~~~~\n"
+													 "~=============~\n"
+													 "~~~~~~~~~~~~~~~\n"));
+}
+
+// one line 
+TEST_CASE("Good input") {
+    CHECK(nospaces(mat(49, 1, '*', '+')) == nospaces("*************************************************\n"));
+
+}
+
+// two lines
+TEST_CASE("Good input") {
+    CHECK(nospaces(mat(49, 1, '+', '*')) == nospaces("+++++++++++++++++++++++++++++++++++++++++++++++++\n"
+													 "+++++++++++++++++++++++++++++++++++++++++++++++++\n"));
+
+}
+
+
+TEST_CASE("Good input") {
+    CHECK(nospaces(mat(5, 5, '=', '/')) == nospaces("=====\n"
+												    "=///=\n"
+													"=/=/=\n"
+													"=///=\n"
+													"=====\n"));
+}
+
+// 2 columns
+TEST_CASE("Good input") {
+    CHECK(nospaces(mat(2, 21, '$', '+')) == nospaces("$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+													 "$$\n"
+												     "$$\n"));
+}
+
+TEST_CASE("Good input") {
+	CHECK(nospaces(mat(11, 11, '@', '-')) == nospaces("@@@@@@@@@@@\n"
+													  "@---------@\n"
+													  "@-@@@@@@@-@\n"
+													  "@-@-----@-@\n"
+													  "@-@-@@@-@-@\n"
+													  "@-@-@-@-@-@\n"
+													  "@-@-@@@-@-@\n"
+													  "@-@-----@-@\n"
+													  "@-@@@@@@@-@\\n"
+													  "@---------@\\n"
+													  "@@@@@@@@@@@\n"));
+	
+}
+
 
 
 TEST_CASE("Good input") {
@@ -27,12 +108,7 @@ TEST_CASE("Good input") {
 													"@-@@@@@-@\n"
 													"@-------@\n"
 													"@@@@@@@@@"));
-	/* Add more test here */
-}
-
-TEST_CASE("Bad input") {
-    CHECK_THROWS(mat(10, 5, '$', '%'));
-    /* Add more test here */
+	
 }
 
 TEST_CASE("Good input") {
@@ -45,41 +121,7 @@ TEST_CASE("Good input") {
                                                      "###############"));
 }
 
-
-TEST_CASE("Good input") {
-    CHECK(nospaces(mat(9, 7, '@', '-')) == nospaces("@@@@@@@@@\n"
-													"@-------@\n"
-													"@-@@@@@-@\n"
-													"@-@---@-@\n"
-													"@-@@@@@-@\n"
-													"@-------@\n"
-													"@@@@@@@@@\n"));
-}
-
-TEST_CASE("Good input") {
-    CHECK(nospaces(mat(3, 7, '$', '+')) == nospaces("$$$\n"
-													"$+$\n"
-													"$+$\n"
-													"$+$\n"
-													"$+$\n"
-													"$+$\n"
-													"$$$n"));
-}
-
-TEST_CASE("Good input") {
-    CHECK(nospaces(mat(1, 1, '=', ':')) == nospaces("=\n"));
-}
-
-TEST_CASE("Bad input") {
-    CHECK_THROWS(mat(0, 0, '$', '%'));
-
-}
-TEST_CASE("Good input") {
-    CHECK(nospaces(mat(49, 1, '*', '+')) == nospaces("*************************************************\n"));
-
-}
-
-
+// big case
 TEST_CASE("Good input") {
     CHECK(nospaces(mat(25, 25, '&', '!')) == nospaces("&&&&&&&&&&&&&&&&&&&&&&&&&\n"
 													  "&!!!!!!!!!!!!!!!!!!!!!!!&\n"
@@ -109,11 +151,8 @@ TEST_CASE("Good input") {
 }
 
 
-TEST_CASE("Bad input") {
-    CHECK_THROWS(mat(23, 50, '$', '%'));
 
-}
-
+// very big case
 TEST_CASE("Good input") {
     CHECK(nospaces(mat(23, 37, '?', '^')) == nospaces("?????????????????????????????????????\n"
                                                       "?^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^?\n"
@@ -142,56 +181,14 @@ TEST_CASE("Good input") {
 }
 
 
-TEST_CASE("Good input") {
-    CHECK(nospaces(mat(2, 2, '~', '=')) == nospaces("~~\n"
-												    "~~\n"));
-}
-
-TEST_CASE("Good input") {
-    CHECK(nospaces(mat(5, 5, '=', '/')) == nospaces("=====\n"
-												    "=///=\n"
-													"=/=/=\n"
-													"=///=\n"
-													"=====\n"));
-}
-TEST_CASE("Good input") {
-    CHECK(nospaces(mat(3, 7, '$', '+')) == nospaces("$$$\n"
-													"$+$\n"
-													"$+$\n"
-													"$+$\n"
-													"$+$\n"
-													"$+$\n"
-													"$$$n"));
-}
-
-TEST_CASE("Good input") {
-    CHECK(nospaces(mat(100, 100, '=', ':')) == nospaces("=\n"));
-}
-
 TEST_CASE("Bad input") {
-    CHECK_THROWS(mat(0, 0, '$', '%'));
-
-}
-TEST_CASE("Good input") {
-    CHECK(nospaces(mat(49, 1, '*', '+')) == nospaces("*************************************************\n"
-													 "*************************************************\n"));
-
-}
-
-
-TEST_CASE("Good input") {
-    CHECK(nospaces(mat(3, 3, '$', '+')) == nospaces("$$$\n"
-													"$+$\n"
-													"$$$\n"));
-}
-
-TEST_CASE("Good input") {
-    CHECK(nospaces(mat(3, 15, '~', '=')) == nospaces("~~~~~~~~~~~~~~~\n"
-													 "~=============~\n"
-													 "~~~~~~~~~~~~~~~\n"));
-}
-
-TEST_CASE("Bad input") {
-    CHECK_THROWS(mat(12, 200, '$', '%'));
-
+	CHECK_THROWS(mat(0, 0, '$', '%'));  			 // zero and zero
+	CHECK_THROWS(mat(2, 2, '~', '='));				 // matrix 2 x 2
+    CHECK_THROWS(mat(10, 5, '$', '%'));				 // even and odd
+	CHECK_THROWS(mat(23, 50, '$', '%'));             // odd and even
+	CHECK_THROWS(mat(12, 200, '$', '%'));            // even and even
+	CHECK_THROWS(mat(500, 500, '$', '%'));           // two big even
+	CHECK_THROWS(mat(480, 3, '$', '%'));			 // one big even and odd
+	CHECK_THROWS(mat(701, 20, '$', '%'));			 // one big odd and even
+    
 }
