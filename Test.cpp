@@ -190,5 +190,7 @@ TEST_CASE("Bad input") {
 	CHECK_THROWS(mat(500, 500, '$', '%'));           // two big even
 	CHECK_THROWS(mat(480, 3, '$', '%'));			 // one big even and odd
 	CHECK_THROWS(mat(701, 20, '$', '%'));			 // one big odd and even
+	CHECK_THROWS(mat(-4, -11, '~', '='));            // two negative numbers
+	CHECK_THROWS(mat(23, -55, '$', '%'));            // one negative number
     
 }
