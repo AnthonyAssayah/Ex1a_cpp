@@ -1,9 +1,8 @@
 #include "doctest.h"
 #include "mat.hpp"
-using namespace ariel;
-
 #include <string>
 #include <algorithm>
+using namespace ariel;
 using namespace std;
 
 
@@ -61,25 +60,25 @@ TEST_CASE("Good input") {
 
 // 2 columns
 TEST_CASE("Good input") {
-    CHECK(nospaces(mat(2, 21, '$', '+')) == nospaces("$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
-													 "$$\n"
+    CHECK(nospaces(mat(3, 21, '$', '+')) == nospaces("$$\n"
+													 "$$$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$+$\n"
+													 "$$$\n"
 													 "$$\n"
 												     "$$\n"));
 }
